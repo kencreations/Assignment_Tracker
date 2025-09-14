@@ -59,7 +59,6 @@
             }
         </style>
     </head>
-    cdn.jsdelivr.net
 
     <body>
         <div class="wrapper">
@@ -133,7 +132,7 @@
                         </div>
                         <span class="profile-userDescription">
                             <span class="op-7">Hi,</span>
-                            <span class="fw-bold"><?php echo $_SESSION['Description'];?></span>
+                            <span class="fw-bold" id="username"></span>
                         </span>
                     </a>
                     <ul class="dropdown-menu dropdown-user animated fadeIn">
@@ -346,39 +345,40 @@
                                 </div>
                                 <div class="modal-body">
 
-                                    <form id="DeleteUserForm">
+                                    <form id="add_assignment">
                                         <div class="row">
-                                            <div class="col-md-6 mb-3">
+                                            <div class="col-md-12 mb-3">
                                                 <label class="form-label">Subject</label>
-                                                <select name="subject" class="form-control" required>
-                                                    <option value="CHEM101">CHEM101</option>
-                                                    <option value="MATH101">MATH101</option>
-                                                    <option value="CpE 101">CpE 101</option>
-                                                    <option value="PATHFit 101">PATHFit 101</option>
+                                                <select id="subjectSelect" name="subject" class="form-control" required>
+                                                    <option value="" selected>Select Subject</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-6 mb-3">
                                                 <label class="form-label">Title</label>
-                                                <input type="text" class="form-control" required>
+                                                <input type="text" class="form-control" name="title" required>
                                             </div>
                                             <div class="col-md-6 mb-3">
                                                 <label class="form-label">Description</label>
-                                                <input type="text" class="form-control" required>
+                                                <input type="text" class="form-control" name="description" required>
                                             </div>
                                             <div class="col-md-6 mb-3">
                                                 <label class="form-label">Due Date</label>
-                                                <input type="date" class="form-control" required>
+                                                <input type="date" class="form-control" name="due_date" required>
                                             </div>
                                             <div class="col-md-6 mb-3">
                                                 <label class="form-label">Status</label>
-                                                <select name="status" class="form-control" required>
+                                                <select name="status" class="form-control" name="status" required>
                                                     <option value="">Select Status</option>
                                                     <option value="pending">Pending</option>
+                                                    <option value="in_progress">In Progress</option>
                                                     <option value="completed">Completed</option>
-                                                    <option value="overdue">Overdue</option>
                                                 </select>
                                             </div>
                                         </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">Add Assignment</button>
                                     </form>
 
                             </div>
@@ -393,170 +393,89 @@
                 </div>
             </div>
         </div>
-       <script src="static/assets/js/core/jquery-3.7.1.min.js"></script>
-<script src="static/assets/js/core/popper.min.js"></script>
-<script src="static/assets/js/core/bootstrap.min.js"></script>
-
-<!-- jQuery Scrollbar -->
-<script src="static/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
-
-<!-- Chart JS -->
-<script src="static/assets/js/plugin/chart.js/chart.min.js"></script>
-
-<!-- jQuery Sparkline -->
-<script src="static/assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js"></script>
-
-<!-- Chart Circle -->
-<script src="static/assets/js/plugin/chart-circle/circles.min.js"></script>
-
-<!-- Datatables -->
-<script src="static/assets/js/plugin/datatables/datatables.min.js"></script>
-
-<!-- Bootstrap Notify -->
-<script src="static/assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
-
-<!-- jQuery Vector Maps -->
-<script src="static/assets/js/plugin/jsvectormap/jsvectormap.min.js"></script>
-<script src="static/assets/js/plugin/jsvectormap/world.js"></script>
-
-<!-- Sweet Alert -->
-<script src="static/assets/js/plugin/sweetalert/sweetalert.min.js"></script>
-
-<!-- Kaiadmin JS -->
-<script src="static/assets/js/kaiadmin.min.js"></script>
+        <script src="static/assets/js/core/jquery-3.7.1.min.js"></script>
+        <script src="static/assets/js/core/popper.min.js"></script>
+        <script src="static/assets/js/core/bootstrap.min.js"></script>
+        <script src="static/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+        <script src="static/assets/js/plugin/chart.js/chart.min.js"></script>
+        <script src="static/assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js"></script>
+        <script src="static/assets/js/plugin/chart-circle/circles.min.js"></script>
+        <script src="static/assets/js/plugin/datatables/datatables.min.js"></script>
+        <script src="static/assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
+        <script src="static/assets/js/plugin/jsvectormap/jsvectormap.min.js"></script>
+        <script src="static/assets/js/plugin/jsvectormap/world.js"></script>
+        <script src="static/assets/js/plugin/sweetalert/sweetalert.min.js"></script>
+        <script src="static/assets/js/kaiadmin.min.js"></script>
+        <script src=
+    "https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.1/js.cookie.min.js">
+</script>
         <script>
-            var lineChart = document
-                    .getElementById("lineChart")
-                    .getContext("2d"),
-                pieChart = document.getElementById("pieChart").getContext("2d");
-
-            var myLineChart = new Chart(lineChart, {
-                type: "line",
-                data: {
-                    labels: [
-                        "Jan",
-                        "Feb",
-                        "Mar",
-                        "Apr",
-                        "May",
-                        "Jun",
-                        "Jul",
-                        "Aug",
-                        "Sep",
-                        "Oct",
-                        "Nov",
-                        "Dec",
-                    ],
-                    datasets: [
+            $(document).ready(function() {
+                console.log(Cookies.get('username'))
+                $('#basic-datatables').DataTable({
+                    ajax: {
+                        url: '/api/assignment',
+                        dataSrc: 'data'
+                    },
+                    columns: [
+                        { data: 'subject' },
+                        { data: 'title' },
+                        { data: 'description' },
+                        { data: 'due_date' },
+                        { data: 'status' },
                         {
-                            label: "Pet Patients",
-                            borderColor: "#1d7af3",
-                            pointBorderColor: "#FFF",
-                            pointBackgroundColor: "#1d7af3",
-                            pointBorderWidth: 2,
-                            pointHoverRadius: 4,
-                            pointHoverBorderWidth: 1,
-                            pointRadius: 4,
-                            backgroundColor: "transparent",
-                            fill: true,
-                            borderWidth: 2,
-                            data: [],
-                        },
-                    ],
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    legend: {
-                        position: "bottom",
-                        labels: {
-                            padding: 10,
-                            fontColor: "#1d7af3",
-                        },
-                    },
-                    tooltips: {
-                        bodySpacing: 4,
-                        mode: "nearest",
-                        intersect: 0,
-                        position: "nearest",
-                        xPadding: 10,
-                        yPadding: 10,
-                        caretPadding: 10,
-                    },
-                    layout: {
-                        padding: {
-                            left: 15,
-                            right: 15,
-                            top: 15,
-                            bottom: 15,
-                        },
-                    },
-                },
-            });
-
-            var myPieChart = new Chart(pieChart, {
-                type: "pie",
-                data: {
-                    datasets: [
-                        {
-                            data: [50, 35],
-                            backgroundColor: ["#1d7af3", "#f3545d"],
-                            borderWidth: 0,
-                        },
-                    ],
-                    labels: ["Male", "Female"],
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    legend: {
-                        position: "bottom",
-                        labels: {
-                            fontColor: "rgb(154, 154, 154)",
-                            fontSize: 11,
-                            usePointStyle: true,
-                            padding: 20,
-                        },
-                    },
-                    pieceLabel: {
-                        render: "percentage",
-                        fontColor: "white",
-                        fontSize: 14,
-                    },
-                    tooltips: false,
-                    layout: {
-                        padding: {
-                            left: 20,
-                            right: 20,
-                            top: 20,
-                            bottom: 20,
-                        },
-                    },
-                },
-            });
-
-            $(document).ready(() => {
-                fetch("static/backend/dashboard_stats.php")
-                    .then((res) => res.json())
-                    .then((data) => {
-                        document.getElementById("totalUsers").textContent =
-                            data.users;
-                        document.getElementById("totalPatients").textContent =
-                            data.patients;
-                        document.getElementById("totalBreeds").textContent =
-                            data.breeds;
-
-                        myLineChart.data.datasets[0].data = data.monthly;
-                        myLineChart.update();
-
-                        const male = data.gender.Male || 0;
-                        const female = data.gender.Female || 0;
-                        myPieChart.data.datasets[0].data = [male, female];
-                        myPieChart.update();
-                    })
-                    .catch((err) => {
-                        console.error("Failed to load dashboard data:", err);
+                            data: null,
+                            render: function(data, type, row) {
+                                return `
+                                    <button class="btn btn-sm btn-primary edit-btn" data-id="${row.id}">Edit</button>
+                                    <button class="btn btn-sm btn-danger delete-btn" data-id="${row.id}">Delete</button>
+                                `;
+                            }
+                        }
+                    ]
+                });
+                $('#add_assignment').on('submit', function(e) {
+                    e.preventDefault();
+                    var formData = $(this).serialize();
+                    $.ajax({
+                        url: '/api/assignment',
+                        method: 'POST',
+                        data: formData,
+                        success: function(response) {
+                            $('#exampleModal').modal('hide');
+                            table.ajax.reload();
+                            fetchStats();
+                            alert('Assignment added successfully!');
+                        }
                     });
+                });
+
+                $('#basic-datatables').on('click', '.delete-btn', function() {
+                    var assignmentId = $(this).data('id');
+                    if (confirm('Are you sure you want to delete this assignment?')) {
+                        $.ajax({
+                            url: `/api/delete_assignment/${assignmentId}`,
+                            method: 'DELETE',
+                            success: function(response) {
+                                table.ajax.reload();
+                                fetchStats();
+                                alert('Assignment deleted successfully!');
+                            }
+                        });
+                    }
+                });
+                fetch("/api/subjects").then(response => response.json())
+                .then(result => {
+                    let select = document.getElementById("subjectSelect");
+                    result.data.forEach(subject => {
+                        let option = document.createElement("option");
+                        option.value = subject.id; 
+                        option.textContent = `${subject.name} - ${subject.description}`;
+                        select.appendChild(option);
+                    });
+                })
+                .catch(err => console.error("Error loading subjects:", err));
+                document.getElementById("username").textContent = Cookies.get('username');
             });
         </script>
     </body>
