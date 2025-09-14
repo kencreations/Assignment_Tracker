@@ -1,12 +1,14 @@
 from flask import Flask, request, render_template
 from routes.auth import auth_bp
 import os
+from flask_bcrypt import Bcrypt
 
 def create_app():
     app = Flask(
         __name__,
         template_folder=os.path.join(os.path.dirname(__file__), 'templates')  # ✅ point to app/templates
     )
+    bcrypt = Bcrypt(app)
     app.config['TEMPLATES_AUTO_RELOAD'] = True
 
     app.register_blueprint(auth_bp)

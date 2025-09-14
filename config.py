@@ -3,4 +3,4 @@ class Database:
     PORT = 3306
     USERNAME = 'root'
     PASSWORD = ''
-    DB_NAME = 'ass_db'
+    DB_NAME = 'ass_tacker'
