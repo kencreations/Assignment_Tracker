@@ -9,7 +9,7 @@
         />
         <meta
             content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
-            name="viewport"
+            Description="viewport"
         />
         <link
             rel="icon"
@@ -91,52 +91,81 @@
                 </div>
                 <div class="sidebar-wrapper scrollbar scrollbar-inner">
                     <div class="sidebar-content">
-                        <ul class="nav nav-secondary">
-                            <li
-                                class="nav-item <?= $current_page === 'dashboard.php' ? 'active' : '' ?>"
-                            >
-                                <a href="dashboard.php" aria-expanded="false">
-                                    <i class="fas fa-home"></i>
-                                    <p>Dashboard</p>
-                                </a>
-                            </li>
-                            <li
-                                class="nav-item <?= $current_page === 'pet_records.php' ? 'active' : '' ?>"
-                            >
-                                <a href="pet_records.php" aria-expanded="false">
-                                    <i class="fas fa-user"></i>
-                                    <p>Pet Records</p>
-                                </a>
-                            </li>
-                            <li
-                                class="nav-item <?= $current_page === 'breed_records.php' ? 'active' : '' ?>"
-                            >
-                                <a
-                                    href="breed_records.php"
-                                    aria-expanded="false"
-                                >
-                                    <i class="fas fa-paw"></i>
-                                    <p>Breed Records</p>
-                                </a>
-                            </li>
-                            <li
-                                class="nav-item <?= $current_page === 'users.php' ? 'active' : '' ?>"
-                            >
-                                <a href="users.php" aria-expanded="false">
-                                    <i class="fas fa-users"></i>
-                                    <p>Manage Users</p>
-                                </a>
-                            </li>
-                        </ul>
+                        
                     </div>
                 </div>
             </div>
             <div class="main-panel">
-                <?php include "../components/topnav.php" ?>
+                <div class="main-header">
+    <div class="main-header-logo">
+        <!-- Logo Header -->
+        <div class="logo-header" data-background-color="dark">
+            <a href="index.html" class="logo">
+                <img src="assets/img/kaiadmin/logo_light.svg" alt="navbar brand" class="navbar-brand" height="20" />
+            </a>
+            <div class="nav-toggle">
+                <button class="btn btn-toggle toggle-sidebar">
+                    <i class="gg-menu-right"></i>
+                </button>
+                <button class="btn btn-toggle sidenav-toggler">
+                    <i class="gg-menu-left"></i>
+                </button>
+            </div>
+            <button class="topbar-toggler more">
+                <i class="gg-more-vertical-alt"></i>
+            </button>
+        </div>
+        <!-- End Logo Header -->
+    </div>
+    <!-- Navbar Header -->
+    <nav class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bottom">
+        <div class="container-fluid">
+
+
+            <ul class="navbar-nav topbar-nav ms-md-auto align-items-center">
+
+
+
+                <li class="nav-item topbar-user dropdown hidden-caret">
+                    <a class="dropdown-toggle profile-pic" data-bs-toggle="dropdown" href="#" aria-expanded="false">
+                        <div class="avatar-sm">
+                            <img src="../assets/img/profile2.jpg" alt="..." class="avatar-img rounded-circle" />
+                        </div>
+                        <span class="profile-userDescription">
+                            <span class="op-7">Hi,</span>
+                            <span class="fw-bold"><?php echo $_SESSION['Description'];?></span>
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user animated fadeIn">
+                        <div class="dropdown-user-scroll scrollbar-outer">
+                            <li>
+                                <div class="user-box">
+                                    <div class="avatar-lg">
+                                        <img src="../assets/img/profile2.jpg" alt="image profile"
+                                            class="avatar-img rounded" />
+                                    </div>
+                                    <div class="u-text">
+                                        <h4><?php echo $_SESSION['Description'];?></span></h4>
+                                        <p class="text-muted"><?php echo $_SESSION['email'];?></span></p>
+
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="./../backend/logout.php">Logout</a>
+                            </li>
+                        </div>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- End Navbar -->
+</div>
                 <div class="container">
                     <div class="page-inner">
                         <div class="row">
-                            <div class="col-sm-6 col-md-4">
+                            <div class="col-sm-6 col-md-3">
                                 <div class="card card-stats card-round">
                                     <div class="card-body">
                                         <div class="row align-items-center">
@@ -144,7 +173,7 @@
                                                 <div
                                                     class="icon-big text-center icon-primary bubble-shadow-small"
                                                 >
-                                                    <i class="fas fa-users"></i>
+                                                    <i class="fas fa-file"></i>
                                                 </div>
                                             </div>
                                             <div
@@ -152,11 +181,11 @@
                                             >
                                                 <div class="numbers">
                                                     <p class="card-category">
-                                                        Users
+                                                        Total
                                                     </p>
                                                     <h4
                                                         class="card-title"
-                                                        id="totalUsers"
+                                                        id="totalnoofassignments"
                                                     >
                                                         ...
                                                     </h4>
@@ -166,16 +195,16 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-6 col-md-4">
+                            <div class="col-sm-6 col-md-3">
                                 <div class="card card-stats card-round">
                                     <div class="card-body">
                                         <div class="row align-items-center">
                                             <div class="col-icon">
                                                 <div
-                                                    class="icon-big text-center icon-info bubble-shadow-small"
+                                                    class="icon-big text-center icon-warning bubble-shadow-small"
                                                 >
                                                     <i
-                                                        class="fas fa-user-check"
+                                                        class="fas fa-clock"
                                                     ></i>
                                                 </div>
                                             </div>
@@ -184,11 +213,11 @@
                                             >
                                                 <div class="numbers">
                                                     <p class="card-category">
-                                                        Patients
+                                                        In Progress
                                                     </p>
                                                     <h4
                                                         class="card-title"
-                                                        id="totalPatients"
+                                                        id="inprogressassignments"
                                                     >
                                                         ...
                                                     </h4>
@@ -198,15 +227,15 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-6 col-md-4">
+                            <div class="col-sm-6 col-md-3">
                                 <div class="card card-stats card-round">
                                     <div class="card-body">
                                         <div class="row align-items-center">
                                             <div class="col-icon">
                                                 <div
-                                                    class="icon-big text-center icon-success bubble-shadow-small"
+                                                    class="icon-big text-center icon-danger bubble-shadow-small"
                                                 >
-                                                    <i class="fas fa-dog"></i>
+                                                    <i class="fas fa-spinner"></i>
                                                 </div>
                                             </div>
                                             <div
@@ -214,11 +243,41 @@
                                             >
                                                 <div class="numbers">
                                                     <p class="card-category">
-                                                        Dog Breeds
+                                                        Pending
                                                     </p>
                                                     <h4
                                                         class="card-title"
-                                                        id="totalBreeds"
+                                                        id="pendingassig"
+                                                    >
+                                                        ...
+                                                    </h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <div class="col-sm-6 col-md-3">
+                                <div class="card card-stats card-round">
+                                    <div class="card-body">
+                                        <div class="row align-items-center">
+                                            <div class="col-icon">
+                                                <div
+                                                    class="icon-big text-center icon-success bubble-shadow-small"
+                                                >
+                                                    <i class="fas fa-check"></i>
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="col col-stats ms-3 ms-sm-0"
+                                            >
+                                                <div class="numbers">
+                                                    <p class="card-category">
+                                                        Completed
+                                                    </p>
+                                                    <h4
+                                                        class="card-title"
+                                                        id="completedassig"
                                                     >
                                                         ...
                                                     </h4>
@@ -230,41 +289,121 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <div class="card-title">
-                                            No. of Pet Records
-                                        </div>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="chart-container">
-                                            <canvas id="lineChart"></canvas>
-                                        </div>
-                                    </div>
+                        <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+
+                            <div
+                                class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
+                                <div>
+                                    <h3 class="fw-bold mb-3">Assignments Overview</h3>
                                 </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <div class="card-title">Gender</div>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="chart-container">
-                                            <canvas
-                                                id="pieChart"
-                                                style="width: 50%; height: 50%"
-                                            ></canvas>
-                                        </div>
-                                    </div>
+                                <div class="ms-md-auto py-2 py-md-0">
+                                    <button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary btn-round">Add Assignment</button>
+                                    <a href="dashboard.php" class="btn btn-danger btn-round">Back</a>
                                 </div>
                             </div>
                         </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table id="basic-datatables" class="display table table-striped table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Subject</th>
+                                            <th>Title</th>
+                                            <th>Description</th>
+                                            <th>Date</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Subject</th>
+                                            <th>Title</th>
+                                            <th>Description</th>
+                                            <th>Date</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </tfoot>
+
+
+
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="DeleteUserModal" data-bs-backdrop="static" data-bs-keyboard="false"
+                        tabindex="-1" aria-labelledby="DeleteUserFormLabel" aria-hidden="true">
+                        <div class=" modal-dialog modal-dialog-centered modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Edit User</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+
+                                    <form id="DeleteUserForm">
+                                        <h2>
+                                            Are you sure you want to delete this pet record?
+                                            <input type="hidden" Description="user_id" id="delete_user_id">
+                                            <input type="text" Description="userDescription" id="delete_userDescription" readonly>
+                                        </h2>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Yes</button>
+                                </div>
+                                </form>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+                </div>
                     </div>
                 </div>
             </div>
         </div>
-        <?php include "./../components/scripts.php" ?>
+       <script src="./../assets/js/core/jquery-3.7.1.min.js"></script>
+<script src="./../assets/js/core/popper.min.js"></script>
+<script src="./../assets/js/core/bootstrap.min.js"></script>
+
+<!-- jQuery Scrollbar -->
+<script src="./../assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+
+<!-- Chart JS -->
+<script src="./../assets/js/plugin/chart.js/chart.min.js"></script>
+
+<!-- jQuery Sparkline -->
+<script src="./../assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js"></script>
+
+<!-- Chart Circle -->
+<script src="./../assets/js/plugin/chart-circle/circles.min.js"></script>
+
+<!-- Datatables -->
+<script src="./../assets/js/plugin/datatables/datatables.min.js"></script>
+
+<!-- Bootstrap Notify -->
+<script src="./../assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
+
+<!-- jQuery Vector Maps -->
+<script src="./../assets/js/plugin/jsvectormap/jsvectormap.min.js"></script>
+<script src="./../assets/js/plugin/jsvectormap/world.js"></script>
+
+<!-- Sweet Alert -->
+<script src="./../assets/js/plugin/sweetalert/sweetalert.min.js"></script>
+
+<!-- Kaiadmin JS -->
+<script src="./../assets/js/kaiadmin.min.js"></script>
         <script>
             var lineChart = document
                     .getElementById("lineChart")
