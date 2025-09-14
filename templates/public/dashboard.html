@@ -1,105 +1,261 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Vet System</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+        />
+        <meta
+            content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+            name="viewport"
+        />
+        <link
+            rel="icon"
+            href="/Assignment_Tracker/static/assets/img/logo.svg"
+            type="image/x-icon"
+        />
 
-<?php 
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-if (!isset($_SESSION['user_id']) || $_SESSION['role'] != '0') {
-    header("Location: ../index.php");
-    exit();
-}
-include "../components/header.php";
-?>
+        <!-- Fonts and icons -->
+        <script src="static/assets/js/plugin/webfont/webfont.min.js"></script>
+        <script>
+            WebFont.load({
+                google: {
+                    families: ["Public Sans:300,400,500,600,700"],
+                },
+                custom: {
+                    families: [
+                        "Font Awesome 5 Solid",
+                        "Font Awesome 5 Regular",
+                        "Font Awesome 5 Brands",
+                        "simple-line-icons",
+                    ],
+                    urls: ["static/assets/css/fonts.min.css"],
+                },
+                active: function () {
+                    sessionStorage.fonts = true;
+                },
+            });
+        </script>
 
-<body>
+        <!-- CSS Files -->
+        <link rel="stylesheet" href="static/assets/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="static/assets/css/plugins.min.css" />
+        <link rel="stylesheet" href="static/assets/css/kaiadmin.min.css" />
 
-    <div class="wrapper">
-        <?php include "../components/admin_sidenav.php" ?>
-        <div class="main-panel">
-            <?php include "../components/topnav.php" ?>
-            <div class="container">
-                <div class="page-inner">
-                    <div class="row">
-                        <div class="col-sm-6 col-md-4">
-                            <div class="card card-stats card-round">
-                                <div class="card-body">
-                                    <div class="row align-items-center">
-                                        <div class="col-icon">
-                                            <div class="icon-big text-center icon-primary bubble-shadow-small">
-                                                <i class="fas fa-users"></i>
-                                            </div>
-                                        </div>
-                                        <div class="col col-stats ms-3 ms-sm-0">
-                                            <div class="numbers">
-                                                <p class="card-category">Users</p>
-                                                <h4 class="card-title" id="totalUsers">...</h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+        <style>
+            .login-container {
+                max-width: 500px;
+                width: 100%;
+                padding: 30px;
+                background-color: #ffffff;
+                border-radius: 10px;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            h5 {
+                font-weight: 600;
+            }
+        </style>
+    </head>
+    cdn.jsdelivr.net
+
+    <body>
+        <div class="wrapper">
+            <div class="sidebar" data-background-color="dark">
+                <div class="sidebar-logo">
+                    <!-- Logo Header -->
+                    <div class="logo-header" data-background-color="dark">
+                        <a href="index.html" class="logo">
+                            <img
+                                src="static/assets/img/logo2.svg"
+                                alt="navbar brand"
+                                class="navbar-brand"
+                                height="30"
+                            />
+                        </a>
+                        <div class="nav-toggle">
+                            <button class="btn btn-toggle toggle-sidebar">
+                                <i class="gg-menu-right"></i>
+                            </button>
+                            <button class="btn btn-toggle sidenav-toggler">
+                                <i class="gg-menu-left"></i>
+                            </button>
                         </div>
-                        <div class="col-sm-6 col-md-4">
-                            <div class="card card-stats card-round">
-                                <div class="card-body">
-                                    <div class="row align-items-center">
-                                        <div class="col-icon">
-                                            <div class="icon-big text-center icon-info bubble-shadow-small">
-                                                <i class="fas fa-user-check"></i>
-                                            </div>
-                                        </div>
-                                        <div class="col col-stats ms-3 ms-sm-0">
-                                            <div class="numbers">
-                                                <p class="card-category">Patients</p>
-                                                <h4 class="card-title" id="totalPatients">...</h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-md-4">
-                            <div class="card card-stats card-round">
-                                <div class="card-body">
-                                    <div class="row align-items-center">
-                                        <div class="col-icon">
-                                            <div class="icon-big text-center icon-success bubble-shadow-small">
-                                                <i class="fas fa-dog"></i>
-                                            </div>
-                                        </div>
-                                        <div class="col col-stats ms-3 ms-sm-0">
-                                            <div class="numbers">
-                                                <p class="card-category">Dog Breeds</p>
-                                                <h4 class="card-title" id="totalBreeds">...</h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <button class="topbar-toggler more">
+                            <i class="gg-more-vertical-alt"></i>
+                        </button>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="card">
-                                <div class="card-header">
-                                    <div class="card-title">No. of Pet Records</div>
+                    <!-- End Logo Header -->
+                </div>
+                <div class="sidebar-wrapper scrollbar scrollbar-inner">
+                    <div class="sidebar-content">
+                        <ul class="nav nav-secondary">
+                            <li
+                                class="nav-item <?= $current_page === 'dashboard.php' ? 'active' : '' ?>"
+                            >
+                                <a href="dashboard.php" aria-expanded="false">
+                                    <i class="fas fa-home"></i>
+                                    <p>Dashboard</p>
+                                </a>
+                            </li>
+                            <li
+                                class="nav-item <?= $current_page === 'pet_records.php' ? 'active' : '' ?>"
+                            >
+                                <a href="pet_records.php" aria-expanded="false">
+                                    <i class="fas fa-user"></i>
+                                    <p>Pet Records</p>
+                                </a>
+                            </li>
+                            <li
+                                class="nav-item <?= $current_page === 'breed_records.php' ? 'active' : '' ?>"
+                            >
+                                <a
+                                    href="breed_records.php"
+                                    aria-expanded="false"
+                                >
+                                    <i class="fas fa-paw"></i>
+                                    <p>Breed Records</p>
+                                </a>
+                            </li>
+                            <li
+                                class="nav-item <?= $current_page === 'users.php' ? 'active' : '' ?>"
+                            >
+                                <a href="users.php" aria-expanded="false">
+                                    <i class="fas fa-users"></i>
+                                    <p>Manage Users</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="main-panel">
+                <?php include "../components/topnav.php" ?>
+                <div class="container">
+                    <div class="page-inner">
+                        <div class="row">
+                            <div class="col-sm-6 col-md-4">
+                                <div class="card card-stats card-round">
+                                    <div class="card-body">
+                                        <div class="row align-items-center">
+                                            <div class="col-icon">
+                                                <div
+                                                    class="icon-big text-center icon-primary bubble-shadow-small"
+                                                >
+                                                    <i class="fas fa-users"></i>
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="col col-stats ms-3 ms-sm-0"
+                                            >
+                                                <div class="numbers">
+                                                    <p class="card-category">
+                                                        Users
+                                                    </p>
+                                                    <h4
+                                                        class="card-title"
+                                                        id="totalUsers"
+                                                    >
+                                                        ...
+                                                    </h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="card-body">
-                                    <div class="chart-container">
-                                        <canvas id="lineChart"></canvas>
+                            </div>
+                            <div class="col-sm-6 col-md-4">
+                                <div class="card card-stats card-round">
+                                    <div class="card-body">
+                                        <div class="row align-items-center">
+                                            <div class="col-icon">
+                                                <div
+                                                    class="icon-big text-center icon-info bubble-shadow-small"
+                                                >
+                                                    <i
+                                                        class="fas fa-user-check"
+                                                    ></i>
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="col col-stats ms-3 ms-sm-0"
+                                            >
+                                                <div class="numbers">
+                                                    <p class="card-category">
+                                                        Patients
+                                                    </p>
+                                                    <h4
+                                                        class="card-title"
+                                                        id="totalPatients"
+                                                    >
+                                                        ...
+                                                    </h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-4">
+                                <div class="card card-stats card-round">
+                                    <div class="card-body">
+                                        <div class="row align-items-center">
+                                            <div class="col-icon">
+                                                <div
+                                                    class="icon-big text-center icon-success bubble-shadow-small"
+                                                >
+                                                    <i class="fas fa-dog"></i>
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="col col-stats ms-3 ms-sm-0"
+                                            >
+                                                <div class="numbers">
+                                                    <p class="card-category">
+                                                        Dog Breeds
+                                                    </p>
+                                                    <h4
+                                                        class="card-title"
+                                                        id="totalBreeds"
+                                                    >
+                                                        ...
+                                                    </h4>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="card">
-                                <div class="card-header">
-                                    <div class="card-title">Gender</div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <div class="card-title">
+                                            No. of Pet Records
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="chart-container">
+                                            <canvas id="lineChart"></canvas>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="card-body">
-                                    <div class="chart-container">
-                                        <canvas id="pieChart" style="width: 50%; height: 50%"></canvas>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <div class="card-title">Gender</div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="chart-container">
+                                            <canvas
+                                                id="pieChart"
+                                                style="width: 50%; height: 50%"
+                                            ></canvas>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -108,137 +264,141 @@ include "../components/header.php";
                 </div>
             </div>
         </div>
-    </div>
-    <?php include "./../components/scripts.php" ?>
-    <script>
-    var lineChart = document.getElementById("lineChart").getContext("2d"),
-        pieChart = document.getElementById("pieChart").getContext("2d");
+        <?php include "./../components/scripts.php" ?>
+        <script>
+            var lineChart = document
+                    .getElementById("lineChart")
+                    .getContext("2d"),
+                pieChart = document.getElementById("pieChart").getContext("2d");
 
-    var myLineChart = new Chart(lineChart, {
-        type: "line",
-        data: {
-            labels: [
-                "Jan",
-                "Feb",
-                "Mar",
-                "Apr",
-                "May",
-                "Jun",
-                "Jul",
-                "Aug",
-                "Sep",
-                "Oct",
-                "Nov",
-                "Dec",
-            ],
-            datasets: [{
-                label: "Pet Patients",
-                borderColor: "#1d7af3",
-                pointBorderColor: "#FFF",
-                pointBackgroundColor: "#1d7af3",
-                pointBorderWidth: 2,
-                pointHoverRadius: 4,
-                pointHoverBorderWidth: 1,
-                pointRadius: 4,
-                backgroundColor: "transparent",
-                fill: true,
-                borderWidth: 2,
-                data: [
-
-                ],
-            }, ],
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            legend: {
-                position: "bottom",
-                labels: {
-                    padding: 10,
-                    fontColor: "#1d7af3",
+            var myLineChart = new Chart(lineChart, {
+                type: "line",
+                data: {
+                    labels: [
+                        "Jan",
+                        "Feb",
+                        "Mar",
+                        "Apr",
+                        "May",
+                        "Jun",
+                        "Jul",
+                        "Aug",
+                        "Sep",
+                        "Oct",
+                        "Nov",
+                        "Dec",
+                    ],
+                    datasets: [
+                        {
+                            label: "Pet Patients",
+                            borderColor: "#1d7af3",
+                            pointBorderColor: "#FFF",
+                            pointBackgroundColor: "#1d7af3",
+                            pointBorderWidth: 2,
+                            pointHoverRadius: 4,
+                            pointHoverBorderWidth: 1,
+                            pointRadius: 4,
+                            backgroundColor: "transparent",
+                            fill: true,
+                            borderWidth: 2,
+                            data: [],
+                        },
+                    ],
                 },
-            },
-            tooltips: {
-                bodySpacing: 4,
-                mode: "nearest",
-                intersect: 0,
-                position: "nearest",
-                xPadding: 10,
-                yPadding: 10,
-                caretPadding: 10,
-            },
-            layout: {
-                padding: {
-                    left: 15,
-                    right: 15,
-                    top: 15,
-                    bottom: 15
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    legend: {
+                        position: "bottom",
+                        labels: {
+                            padding: 10,
+                            fontColor: "#1d7af3",
+                        },
+                    },
+                    tooltips: {
+                        bodySpacing: 4,
+                        mode: "nearest",
+                        intersect: 0,
+                        position: "nearest",
+                        xPadding: 10,
+                        yPadding: 10,
+                        caretPadding: 10,
+                    },
+                    layout: {
+                        padding: {
+                            left: 15,
+                            right: 15,
+                            top: 15,
+                            bottom: 15,
+                        },
+                    },
                 },
-            },
-        },
-    });
-
-    var myPieChart = new Chart(pieChart, {
-        type: "pie",
-        data: {
-            datasets: [{
-                data: [50, 35],
-                backgroundColor: ["#1d7af3", "#f3545d"],
-                borderWidth: 0,
-            }, ],
-            labels: ["Male", "Female"],
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            legend: {
-                position: "bottom",
-                labels: {
-                    fontColor: "rgb(154, 154, 154)",
-                    fontSize: 11,
-                    usePointStyle: true,
-                    padding: 20,
-                },
-            },
-            pieceLabel: {
-                render: "percentage",
-                fontColor: "white",
-                fontSize: 14,
-            },
-            tooltips: false,
-            layout: {
-                padding: {
-                    left: 20,
-                    right: 20,
-                    top: 20,
-                    bottom: 20,
-                },
-            },
-        },
-    });
-
-
-    $(document).ready(() => {
-        fetch('./../backend/dashboard_stats.php')
-            .then(res => res.json())
-            .then(data => {
-                document.getElementById("totalUsers").textContent = data.users;
-                document.getElementById("totalPatients").textContent = data.patients;
-                document.getElementById("totalBreeds").textContent = data.breeds;
-
-                myLineChart.data.datasets[0].data = data.monthly;
-                myLineChart.update();
-
-                const male = data.gender.Male || 0;
-                const female = data.gender.Female || 0;
-                myPieChart.data.datasets[0].data = [male, female];
-                myPieChart.update();
-            })
-            .catch(err => {
-                console.error("Failed to load dashboard data:", err);
             });
-    })
-    </script>
-</body>
 
+            var myPieChart = new Chart(pieChart, {
+                type: "pie",
+                data: {
+                    datasets: [
+                        {
+                            data: [50, 35],
+                            backgroundColor: ["#1d7af3", "#f3545d"],
+                            borderWidth: 0,
+                        },
+                    ],
+                    labels: ["Male", "Female"],
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    legend: {
+                        position: "bottom",
+                        labels: {
+                            fontColor: "rgb(154, 154, 154)",
+                            fontSize: 11,
+                            usePointStyle: true,
+                            padding: 20,
+                        },
+                    },
+                    pieceLabel: {
+                        render: "percentage",
+                        fontColor: "white",
+                        fontSize: 14,
+                    },
+                    tooltips: false,
+                    layout: {
+                        padding: {
+                            left: 20,
+                            right: 20,
+                            top: 20,
+                            bottom: 20,
+                        },
+                    },
+                },
+            });
+
+            $(document).ready(() => {
+                fetch("./../backend/dashboard_stats.php")
+                    .then((res) => res.json())
+                    .then((data) => {
+                        document.getElementById("totalUsers").textContent =
+                            data.users;
+                        document.getElementById("totalPatients").textContent =
+                            data.patients;
+                        document.getElementById("totalBreeds").textContent =
+                            data.breeds;
+
+                        myLineChart.data.datasets[0].data = data.monthly;
+                        myLineChart.update();
+
+                        const male = data.gender.Male || 0;
+                        const female = data.gender.Female || 0;
+                        myPieChart.data.datasets[0].data = [male, female];
+                        myPieChart.update();
+                    })
+                    .catch((err) => {
+                        console.error("Failed to load dashboard data:", err);
+                    });
+            });
+        </script>
+    </body>
 </html>
