@@ -85,7 +85,13 @@
 
     <body class="d-flex flex-column min-vh-100">
         <nav class="navbar navbar-dark bg-dark px-4">
-            <img src="static/assets/img/logo.svg" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
+            <img
+                src="static/assets/img/logo.svg"
+                alt="Logo"
+                width="30"
+                height="30"
+                class="d-inline-block align-text-top"
+            />
             <a class="navbar-brand" href="#">Assignment Tracker</a>
             <div class="ms-auto text-white" id="dateTime"></div>
         </nav>
@@ -174,8 +180,7 @@
                                     form.parentNode.appendChild(success);
 
                                     setTimeout(() => {
-                                        window.location.href =
-                                            data.redirect || "dashboard.php";
+                                        window.location.href = "/dashboard";
                                     }, 1200);
                                 } else {
                                     const error = document.createElement("div");

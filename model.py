@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, make_response
 from routes.auth import auth_bp
 import os
 from extensions import bcrypt
@@ -19,5 +19,8 @@ def create_app():
 
     @app.route("/dashboard", methods=['GET'])
     def dashboard():
+        check_cookie = request.cookies.get('username')
+        if not check_cookie:
+            return make_response(render_template('public/index.html'))
         return render_template('public/dashboard.html')
     return app
