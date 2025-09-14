@@ -58,6 +58,6 @@ def get_assignments():
 @assignment_bp.route('/assignment', methods=["POST", "GET"])
 def assignment():
     if request.method == "GET":
-        return get_assignments()   # <-- must return
+        return get_assignments()   
     elif request.method == "POST":
         return add_assignment()
