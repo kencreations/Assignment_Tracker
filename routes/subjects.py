@@ -8,7 +8,7 @@ def get_subjects():
 
     conn = get_db_connection(with_db=True)
     cursor = conn.cursor(dictionary=True)
-    cursor.execute("SELECT id, name FROM subjects")
+    cursor.execute("SELECT id, name, description FROM subjects")
     subjects = cursor.fetchall()
     cursor.close()
     conn.close()

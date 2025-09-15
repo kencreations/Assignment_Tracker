@@ -311,6 +311,31 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="modal fade" id="DeleteUserModal"
+                                    tabindex="-1" aria-labelledby="DeleteUserFormLabel" aria-hidden="true">
+                                    <div class=" modal-dialog modal-dialog-centered modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Delete Assignment</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+
+                                                <form id="DeleteUserForm">
+                                                    
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Close</button>
+                                                        <button type="submit" class="btn btn-primary">Add Assignment</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
                                 <div class="modal fade" id="exampleModal"
                                     tabindex="-1" aria-labelledby="DeleteUserFormLabel" aria-hidden="true">
                                     <div class=" modal-dialog modal-dialog-centered modal-lg">
@@ -356,12 +381,17 @@
                                                         <button type="button" class="btn btn-secondary"
                                                             data-bs-dismiss="modal">Close</button>
                                                         <button type="submit" class="btn btn-primary">Add Assignment</button>
+                                                    </div>
                                                 </form>
+                                                </div>  
 
                                         </div>
 
                                     </div>
+
+                                    
                                 </div>
+                                
 
 
 
@@ -393,9 +423,9 @@
                         .then(result => {
                             const assignments = result.data;
                             const totalCount = assignments.length;
-                            const inProgressCount = assignments.filter(a => a.status === 'In Progress').length;
-                            const pendingCount = assignments.filter(a => a.status === 'Pending').length;
-                            const completedCount = assignments.filter(a => a.status === 'Completed').length;
+                            const inProgressCount = assignments.filter(a => a.status === 'in_progress').length;
+                            const pendingCount = assignments.filter(a => a.status === 'pending').length;
+                            const completedCount = assignments.filter(a => a.status === 'completed').length;
 
                             document.getElementById('totalnoofassignments').innerText = totalCount;
                             document.getElementById('inprogressassignments').innerText = inProgressCount;
@@ -419,9 +449,9 @@
                             render: function(data, type, row) {
                                 return `
                                     <select class="form-select  form-control status-dropdown" data-id="${row.id}">
-                                        <option  value="Pending" ${data === 'Pending' ? 'selected' : ''}>Pending</option>
-                                        <option value="In Progress" ${data === 'In Progress' ? 'selected' : ''}>In Progress</option>
-                                        <option value="Completed" ${data === 'Completed' ? 'selected' : ''}>Completed</option>
+                                        <option  value="pending" ${data === 'pending' ? 'selected' : ''}>Pending</option>
+                                        <option value="in_progress" ${data === 'in_progress' ? 'selected' : ''}>In Progress</option>
+                                        <option value="completed" ${data === 'completed' ? 'selected' : ''}>Completed</option>
                                     </select>
                                 `;
                             }
@@ -431,7 +461,8 @@
                             render: function(data, type, row) {
                                 return `
                                     <button class="btn btn-sm btn-primary edit-btn" data-id="${row.id}"><i class="fas fa-edit"></i> Edit</button>
-                                    <button class="btn btn-sm btn-danger delete-btn" data-id="${row.id}"><i class="fas fa-trash"></i> Delete</button>
+                                    <button class="btn btn-sm btn-danger delete-btn" data-id="${row.id}" data-bs-toggle="modal"
+                            data-bs-target="#DeleteUserModal"><i class="fas fa-trash"></i> Delete</button>
                                 `;
                             }
                         }
@@ -440,6 +471,69 @@
                         updateDashboard(); 
                     }
                 });
+               
+                document.getElementById("DeleteUserForm").addEventListener("submit", function(e) {
+                    e.preventDefault();
+                    var formData = new FormData(e.target);
+                    swal({
+                        title: "Please wait...",
+                        text: "Deleting data...",
+                        buttons: false,
+                        closeOnClickOutside: false,
+                        closeOnEsc: false,
+                        icon: "https://i.gifer.com/ZZ5H.gif", // optional custom loading gif
+                    });
+
+                    fetch('./../backend/delete_pet.php', {
+                            method: 'POST',
+                            body: formData
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            swal({
+                                title: "All done!",
+                                text: data.message,
+                                icon: "success",
+                                button: false,
+                                timer: 1000
+                            }).then(() => {
+                                $("#DeleteUserModal").modal('hide');
+                                $("#basic-datatables").DataTable().ajax.reload();
+
+                            });
+                        } else {
+                            swal("Error", data.message, "error");
+                        }
+                    })
+                    .catch(error => {
+                        swal("Error", "An error occurred while deleting the user.", "error");
+                    });
+                });
+                $(document).on('change', '.status-dropdown', function() {
+                    let assignmentId = $(this).data('id');
+                    let newStatus = $(this).val();
+
+                    $.ajax({
+                        url: '/api/assignment/update-status',
+                        method: 'POST',
+                        contentType: 'application/json',
+                        data: JSON.stringify({ id: assignmentId, status: newStatus }),
+                        success: function(response) {
+                            console.log(response.message);
+                            updateDashboard();
+                        },
+                        error: function(err) {
+                            console.error(err);
+                        }
+                    });
+                });
+                
+              const deleteModal = document.getElementById('DeleteUserModal');
+        deleteModal.addEventListener('show.bs.modal', function(event) {
+            const button = event.relatedTarget;
+
+        });
                 $('#add_assignment').on('submit', function(e) {
                     e.preventDefault();
                     var formData = $(this).serialize();
@@ -456,31 +550,19 @@
                     });
                 });
 
-                $('#basic-datatables').on('click', '.delete-btn', function() {
-                    var assignmentId = $(this).data('id');
-                    if (confirm('Are you sure you want to delete this assignment?')) {
-                        $.ajax({
-                            url: `/api/delete_assignment/${assignmentId}`,
-                            method: 'DELETE',
-                            success: function(response) {
-                                table.ajax.reload();
-                                fetchStats();
-                                alert('Assignment deleted successfully!');
-                            }
-                        });
-                    }
-                });
+                
                 fetch("/api/subjects").then(response => response.json())
-                .then(result => {
-                    let select = document.getElementById("subjectSelect");
-                    result.data.forEach(subject => {
-                        let option = document.createElement("option");
-                        option.value = subject.id; 
-                        option.textContent = `${subject.name} - ${subject.description}`;
-                        select.appendChild(option);
-                    });
-                })
-                .catch(err => console.error("Error loading subjects:", err));
+                    .then(result => {
+                        let select = document.getElementById("subjectSelect");
+                        result.data.forEach(subject => {
+                            let option = document.createElement("option");
+                            option.value = subject.id; 
+                            option.textContent = `${subject.name} - ${subject.description}`;
+                            select.appendChild(option);
+                            console.log(subject);
+                        });
+                    })
+                    .catch(err => console.error("Error loading subjects:", err));
                 
             });
         </script>

@@ -61,3 +61,18 @@ def assignment():
         return get_assignments()   
     elif request.method == "POST":
         return add_assignment()
+
+@assignment_bp.route('/assignment/update-status', methods=["POST"])
+def update_status():
+    data = request.get_json()
+    assignment_id = data.get("id")
+    new_status = data.get("status")
+
+    conn = get_db_connection(with_db=True)
+    cursor = conn.cursor()
+    cursor.execute("UPDATE assignments SET status = %s WHERE id = %s", (new_status, assignment_id))
+    conn.commit()
+    cursor.close()
+    conn.close()
+
+    return jsonify({"message": "Status updated successfully"}), 200
