@@ -33,5 +33,20 @@ def auth():
     
     response = jsonify({"success":  True,"message": "Login successful", "user": user["username"]})
     setCookie = make_response(response)
-    setCookie.set_cookie('username', user["username"], httponly=True, samesite='Lax', secure=False, max_age=60*60*24)
+    setCookie.set_cookie(
+        'user_id',
+        str(user["id"]),
+        httponly=True,
+        samesite='Lax',
+        secure=False,
+        max_age=60*60*24
+    )
+    setCookie.set_cookie(
+        'username',
+        user["username"],
+        httponly=False,
+        samesite='Lax',
+        secure=False,
+        max_age=60*60*24
+    )
     return response

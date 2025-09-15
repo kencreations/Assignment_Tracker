@@ -4,7 +4,7 @@ from routes.assignment import assignment_bp
 from routes.subjects import subjects_bp
 import os
 from extensions import bcrypt
-
+from db import get_db_connection
 def create_app():
     app = Flask(
         __name__,
@@ -23,8 +23,21 @@ def create_app():
 
     @app.route("/dashboard", methods=['GET'])
     def dashboard():
-        check_cookie = request.cookies.get('username')
-        if not check_cookie:
+        user_id = request.cookies.get('user_id')
+        if not user_id:
             return make_response(render_template('public/index.html'))
-        return render_template('public/dashboard.html')
+
+        conn = get_db_connection(with_db=True)
+        cursor = conn.cursor(dictionary=True)
+        cursor.execute("SELECT username, email FROM users WHERE id = %s", (user_id,))
+        user = cursor.fetchone()
+        cursor.close()
+        conn.close()
+
+        if not user:
+            return make_response(render_template('public/index.html'))
+
+        return render_template('public/dashboard.html', user=user)
+
+    
     return app

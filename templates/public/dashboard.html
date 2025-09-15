@@ -62,105 +62,91 @@
 
     <body>
         <div class="wrapper">
-            <div class="sidebar" data-background-color="dark">
-                <div class="sidebar-logo">
-                    <!-- Logo Header -->
-                    <div class="logo-header" data-background-color="dark">
-                        <a href="index.html" class="logo">
-                            <img
-                                src="static/assets/img/logo2.svg"
-                                alt="navbar brand"
-                                class="navbar-brand"
-                                height="30"
-                            />
-                        </a>
-                        <div class="nav-toggle">
-                            <button class="btn btn-toggle toggle-sidebar">
-                                <i class="gg-menu-right"></i>
-                            </button>
-                            <button class="btn btn-toggle sidenav-toggler">
-                                <i class="gg-menu-left"></i>
-                            </button>
+            
+                <div class="main-header">  
+                    <div class="main-header-logo">
+                        <nav class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bottom">
+                        <div class="container-fluid">
+                            <ul class="navbar-nav topbar-nav ms-md-auto align-items-center">
+                                <li class="nav-item topbar-user dropdown hidden-caret">
+                                    <a class="dropdown-toggle profile-pic" data-bs-toggle="dropdown" href="#" aria-expanded="false">
+                                        <div class="avatar-sm">
+                                            <img src="../assets/img/profile2.jpg" alt="..." class="avatar-img rounded-circle" />
+                                        </div>
+                                        <span class="profile-userDescription">
+                                            <span class="op-7">Hi,</span>
+                                            <span class="fw-bold" id="username">{{ user.username }}</span>
+
+                                        </span>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-user animated fadeIn">
+                                        <div class="dropdown-user-scroll scrollbar-outer">
+                                            <li>
+                                                <div class="user-box">
+                                                    <div class="avatar-lg">
+                                                        <img src="../assets/img/profile2.jpg" alt="image profile"
+                                                            class="avatar-img rounded" />
+                                                    </div>
+                                                    <div class="u-text">
+                                                        <h4><?php echo $_SESSION['Description'];?></span></h4>
+                                                        <p class="text-muted"><?php echo $_SESSION['email'];?></span></p>
+
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item" href="static/backend/logout.php">Logout</a>
+                                            </li>
+                                        </div>
+                                    </ul>
+                                </li>
+                            </ul>
                         </div>
-                        <button class="topbar-toggler more">
-                            <i class="gg-more-vertical-alt"></i>
-                        </button>
+                    </nav>
                     </div>
-                    <!-- End Logo Header -->
-                </div>
-                <div class="sidebar-wrapper scrollbar scrollbar-inner">
-                    <div class="sidebar-content">
-                        
-                    </div>
-                </div>
-            </div>
-            <div class="main-panel">
-                <div class="main-header">
-    <div class="main-header-logo">
-        <!-- Logo Header -->
-        <div class="logo-header" data-background-color="dark">
-            <a href="index.html" class="logo">
-                <img src="assets/img/kaiadmin/logo_light.svg" alt="navbar brand" class="navbar-brand" height="20" />
-            </a>
-            <div class="nav-toggle">
-                <button class="btn btn-toggle toggle-sidebar">
-                    <i class="gg-menu-right"></i>
-                </button>
-                <button class="btn btn-toggle sidenav-toggler">
-                    <i class="gg-menu-left"></i>
-                </button>
-            </div>
-            <button class="topbar-toggler more">
-                <i class="gg-more-vertical-alt"></i>
-            </button>
-        </div>
-        <!-- End Logo Header -->
-    </div>
-    <!-- Navbar Header -->
-    <nav class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bottom">
-        <div class="container-fluid">
+                    <nav class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bottom">
+                        <div class="container-fluid">
 
 
-            <ul class="navbar-nav topbar-nav ms-md-auto align-items-center">
+                            <ul class="navbar-nav topbar-nav ms-md-auto align-items-center">
 
 
 
-                <li class="nav-item topbar-user dropdown hidden-caret">
-                    <a class="dropdown-toggle profile-pic" data-bs-toggle="dropdown" href="#" aria-expanded="false">
-                        <div class="avatar-sm">
-                            <img src="../assets/img/profile2.jpg" alt="..." class="avatar-img rounded-circle" />
+                                <li class="nav-item topbar-user dropdown hidden-caret">
+                                    <a class="dropdown-toggle profile-pic" data-bs-toggle="dropdown" href="#" aria-expanded="false">
+                                        <div class="avatar-sm">
+                                            <img src="../assets/img/profile2.jpg" alt="..." class="avatar-img rounded-circle" />
+                                        </div>
+                                        <span class="profile-userDescription">
+                                            <span class="op-7">Hi,</span>
+                                            <span class="fw-bold" id="username"></span>
+                                        </span>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-user animated fadeIn">
+                                        <div class="dropdown-user-scroll scrollbar-outer">
+                                            <li>
+                                                <div class="user-box">
+                                                    <div class="avatar-lg">
+                                                        <img src="../assets/img/profile2.jpg" alt="image profile"
+                                                            class="avatar-img rounded" />
+                                                    </div>
+                                                    <div class="u-text">
+                                                        <h4><?php echo $_SESSION['Description'];?></span></h4>
+                                                        <p class="text-muted"><?php echo $_SESSION['email'];?></span></p>
+
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item" href="static/backend/logout.php">Logout</a>
+                                            </li>
+                                        </div>
+                                    </ul>
+                                </li>
+                            </ul>
                         </div>
-                        <span class="profile-userDescription">
-                            <span class="op-7">Hi,</span>
-                            <span class="fw-bold" id="username"></span>
-                        </span>
-                    </a>
-                    <ul class="dropdown-menu dropdown-user animated fadeIn">
-                        <div class="dropdown-user-scroll scrollbar-outer">
-                            <li>
-                                <div class="user-box">
-                                    <div class="avatar-lg">
-                                        <img src="../assets/img/profile2.jpg" alt="image profile"
-                                            class="avatar-img rounded" />
-                                    </div>
-                                    <div class="u-text">
-                                        <h4><?php echo $_SESSION['Description'];?></span></h4>
-                                        <p class="text-muted"><?php echo $_SESSION['email'];?></span></p>
-
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="static/backend/logout.php">Logout</a>
-                            </li>
-                        </div>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <!-- End Navbar -->
-</div>
+                    </nav>
+                </div>
                 <div class="container">
                     <div class="page-inner">
                         <div class="row">
@@ -185,6 +171,37 @@
                                                     <h4
                                                         class="card-title"
                                                         id="totalnoofassignments"
+                                                    >
+                                                        ...
+                                                    </h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-sm-6 col-md-3">
+                                <div class="card card-stats card-round">
+                                    <div class="card-body">
+                                        <div class="row align-items-center">
+                                            <div class="col-icon">
+                                                <div
+                                                    class="icon-big text-center icon-danger bubble-shadow-small"
+                                                >
+                                                    <i class="fas fa-spinner"></i>
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="col col-stats ms-3 ms-sm-0"
+                                            >
+                                                <div class="numbers">
+                                                    <p class="card-category">
+                                                        Pending
+                                                    </p>
+                                                    <h4
+                                                        class="card-title"
+                                                        id="pendingassig"
                                                     >
                                                         ...
                                                     </h4>
@@ -232,36 +249,6 @@
                                         <div class="row align-items-center">
                                             <div class="col-icon">
                                                 <div
-                                                    class="icon-big text-center icon-danger bubble-shadow-small"
-                                                >
-                                                    <i class="fas fa-spinner"></i>
-                                                </div>
-                                            </div>
-                                            <div
-                                                class="col col-stats ms-3 ms-sm-0"
-                                            >
-                                                <div class="numbers">
-                                                    <p class="card-category">
-                                                        Pending
-                                                    </p>
-                                                    <h4
-                                                        class="card-title"
-                                                        id="pendingassig"
-                                                    >
-                                                        ...
-                                                    </h4>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        <div class="col-sm-6 col-md-3">
-                                <div class="card card-stats card-round">
-                                    <div class="card-body">
-                                        <div class="row align-items-center">
-                                            <div class="col-icon">
-                                                <div
                                                     class="icon-big text-center icon-success bubble-shadow-small"
                                                 >
                                                     <i class="fas fa-check"></i>
@@ -288,107 +275,97 @@
                             </div>
                         </div>
                         <div class="row">
-                        <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header">
 
-                            <div
-                                class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
-                                <div>
-                                    <h3 class="fw-bold mb-3">Assignments Overview</h3>
-                                </div>
-                                <div class="ms-md-auto py-2 py-md-0">
-                                    <button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary btn-round">Add Assignment</button>
-                                    <a href="dashboard.php" class="btn btn-danger btn-round">Back</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table id="basic-datatables" class="display table table-striped table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>Subject</th>
-                                            <th>Title</th>
-                                            <th>Description</th>
-                                            <th>Date</th>
-                                            <th>Status</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Subject</th>
-                                            <th>Title</th>
-                                            <th>Description</th>
-                                            <th>Date</th>
-                                            <th>Status</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </tfoot>
-
-
-
-
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal fade" id="exampleModal"
-                        tabindex="-1" aria-labelledby="DeleteUserFormLabel" aria-hidden="true">
-                        <div class=" modal-dialog modal-dialog-centered modal-lg">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title">Add Assignment</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-
-                                    <form id="add_assignment">
-                                        <div class="row">
-                                            <div class="col-md-12 mb-3">
-                                                <label class="form-label">Subject</label>
-                                                <select id="subjectSelect" name="subject" class="form-control" required>
-                                                    <option value="" selected>Select Subject</option>
-                                                </select>
+                                        <div
+                                            class="d-flex align-items-left align-items-md-center flex-column flex-md-row p-2">
+                                            <div>
+                                                <h3 class="fw-bold m-0">Assignments Overview</h3>
                                             </div>
-                                            <div class="col-md-6 mb-3">
-                                                <label class="form-label">Title</label>
-                                                <input type="text" class="form-control" name="title" required>
-                                            </div>
-                                            <div class="col-md-6 mb-3">
-                                                <label class="form-label">Description</label>
-                                                <input type="text" class="form-control" name="description" required>
-                                            </div>
-                                            <div class="col-md-6 mb-3">
-                                                <label class="form-label">Due Date</label>
-                                                <input type="date" class="form-control" name="due_date" required>
-                                            </div>
-                                            <div class="col-md-6 mb-3">
-                                                <label class="form-label">Status</label>
-                                                <select name="status" class="form-control" name="status" required>
-                                                    <option value="">Select Status</option>
-                                                    <option value="pending">Pending</option>
-                                                    <option value="in_progress">In Progress</option>
-                                                    <option value="completed">Completed</option>
-                                                </select>
+                                            <div class="ms-md-auto py-2 py-md-0">
+                                                <button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-label-info btn-sm btn-round">Add Assignment</button>
+                                                <a href="dashboard.php" class="btn btn-label-danger btn-sm btn-round">Back</a>
                                             </div>
                                         </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-bs-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-primary">Add Assignment</button>
-                                    </form>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table id="basic-datatables" class="display table">
+                                                <thead class="thead-light">
+                                                    <tr>
+                                                        <th>Subject</th>
+                                                        <th>Title</th>
+                                                        <th>Description</th>
+                                                        <th>Date</th>
+                                                        <th>Status</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+
+
+
+
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal fade" id="exampleModal"
+                                    tabindex="-1" aria-labelledby="DeleteUserFormLabel" aria-hidden="true">
+                                    <div class=" modal-dialog modal-dialog-centered modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Add Assignment</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+
+                                                <form id="add_assignment">
+                                                    <div class="row">
+                                                        <div class="col-md-12 mb-3">
+                                                            <label class="form-label">Subject</label>
+                                                            <select id="subjectSelect" name="subject" class="form-control" required>
+                                                                <option value="" selected>Select Subject</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-6 mb-3">
+                                                            <label class="form-label">Title</label>
+                                                            <input type="text" class="form-control" name="title" required>
+                                                        </div>
+                                                        <div class="col-md-6 mb-3">
+                                                            <label class="form-label">Description</label>
+                                                            <input type="text" class="form-control" name="description" required>
+                                                        </div>
+                                                        <div class="col-md-6 mb-3">
+                                                            <label class="form-label">Due Date</label>
+                                                            <input type="date" class="form-control" name="due_date" required>
+                                                        </div>
+                                                        <div class="col-md-6 mb-3">
+                                                            <label class="form-label">Status</label>
+                                                            <select name="status" class="form-control" name="status" required>
+                                                                <option value="">Select Status</option>
+                                                                <option value="pending">Pending</option>
+                                                                <option value="in_progress">In Progress</option>
+                                                                <option value="completed">Completed</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Close</button>
+                                                        <button type="submit" class="btn btn-primary">Add Assignment</button>
+                                                </form>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
 
                             </div>
-
-                        </div>
-                    </div>
-
-
-
-                </div>
                     </div>
                 </div>
             </div>
@@ -406,12 +383,28 @@
         <script src="static/assets/js/plugin/jsvectormap/world.js"></script>
         <script src="static/assets/js/plugin/sweetalert/sweetalert.min.js"></script>
         <script src="static/assets/js/kaiadmin.min.js"></script>
-        <script src=
-    "https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.1/js.cookie.min.js">
-</script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.1/js.cookie.min.js"></script>
         <script>
             $(document).ready(function() {
                 console.log(Cookies.get('username'))
+                const updateDashboard = () => {
+                    fetch('/api/assignment')
+                        .then(response => response.json())
+                        .then(result => {
+                            const assignments = result.data;
+                            const totalCount = assignments.length;
+                            const inProgressCount = assignments.filter(a => a.status === 'In Progress').length;
+                            const pendingCount = assignments.filter(a => a.status === 'Pending').length;
+                            const completedCount = assignments.filter(a => a.status === 'Completed').length;
+
+                            document.getElementById('totalnoofassignments').innerText = totalCount;
+                            document.getElementById('inprogressassignments').innerText = inProgressCount;
+                            document.getElementById('pendingassig').innerText = pendingCount;
+                            document.getElementById('completedassig').innerText = completedCount;
+                        })
+                        .catch(err => console.error('Error fetching assignments:', err));
+                };
+
                 $('#basic-datatables').DataTable({
                     ajax: {
                         url: '/api/assignment',
@@ -422,17 +415,30 @@
                         { data: 'title' },
                         { data: 'description' },
                         { data: 'due_date' },
-                        { data: 'status' },
+                        { data: 'status',
+                            render: function(data, type, row) {
+                                return `
+                                    <select class="form-select  form-control status-dropdown" data-id="${row.id}">
+                                        <option  value="Pending" ${data === 'Pending' ? 'selected' : ''}>Pending</option>
+                                        <option value="In Progress" ${data === 'In Progress' ? 'selected' : ''}>In Progress</option>
+                                        <option value="Completed" ${data === 'Completed' ? 'selected' : ''}>Completed</option>
+                                    </select>
+                                `;
+                            }
+                         },
                         {
                             data: null,
                             render: function(data, type, row) {
                                 return `
-                                    <button class="btn btn-sm btn-primary edit-btn" data-id="${row.id}">Edit</button>
-                                    <button class="btn btn-sm btn-danger delete-btn" data-id="${row.id}">Delete</button>
+                                    <button class="btn btn-sm btn-primary edit-btn" data-id="${row.id}"><i class="fas fa-edit"></i> Edit</button>
+                                    <button class="btn btn-sm btn-danger delete-btn" data-id="${row.id}"><i class="fas fa-trash"></i> Delete</button>
                                 `;
                             }
                         }
-                    ]
+                    ],
+                    initComplete: function() {
+                        updateDashboard(); 
+                    }
                 });
                 $('#add_assignment').on('submit', function(e) {
                     e.preventDefault();
@@ -475,7 +481,7 @@
                     });
                 })
                 .catch(err => console.error("Error loading subjects:", err));
-                document.getElementById("username").textContent = Cookies.get('username');
+                
             });
         </script>
     </body>
